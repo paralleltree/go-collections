@@ -1,0 +1,31 @@
+name: Test package
+
+on:
+  push:
+    branches: '**'
+    tags: '!**'
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Set up gotip
+      run: |
+        go install golang.org/dl/gotip@latest
+        gotip download
+
+    - name: Test and Publish test coverage
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: gotip test -coverprofile=c.out -v ./...
+        prefix: github.com/paralleltree/go-collections
