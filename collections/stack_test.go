@@ -25,7 +25,7 @@ func TestStackOperations(t *testing.T) {
 	s.Push(20)
 
 	if c := s.Count(); c != 2 {
-		t.Errorf("Count(): want 2, got %d", c)
+		t.Errorf("Count(): want %d, got %d", 2, c)
 	}
 
 	v, ok := s.Peek()
@@ -42,9 +42,9 @@ func TestStackOperations(t *testing.T) {
 	checkPeekValue(t, "TestStackOperatons (4)", v, ok, 0, false)
 
 	v, ok = s.Peek()
-	checkPeekValue(t, "TestStackOperatons (4)", v, ok, 0, false)
+	checkPeekValue(t, "TestStackOperatons (5)", v, ok, 0, false)
 
 	if c := s.Count(); c != 0 {
-		t.Errorf("Count(): want 0, got %d", c)
+		t.Errorf("Count(): want %d, got %d", 0, c)
 	}
 }
