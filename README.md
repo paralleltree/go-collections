@@ -1,5 +1,7 @@
 # go-collections
 
+[![Test package](https://github.com/paralleltree/go-collections/actions/workflows/test.yml/badge.svg)](https://github.com/paralleltree/go-collections/actions/workflows/test.yml)
+
 A set of collections with generics in Go.
 
 This package is experimental because the generics in go has not yet completely released.
