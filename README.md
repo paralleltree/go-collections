@@ -22,6 +22,8 @@ You can get latest go version(unstable) that supports exporting generic function
 
 ## Examples
 
+### Stack
+
 ```
 package main
 
@@ -47,4 +49,43 @@ func main() {
 // Output:
 // 20
 // 10
+```
+
+### Set
+
+```
+package main
+
+import (
+	"fmt"
+	"github.com/paralleltree/go-collections/collections"
+)
+
+func main() {
+	s1 := collections.NewSet[int]()
+	s1.Add(10)
+	s1.Add(20)
+	s2 := collections.NewSet[int]()
+	s2.Add(10)
+
+	union := s1.Union(s2)
+	fmt.Println("union.Contains(10):", union.Contains(10))
+	fmt.Println("union.Contains(20):", union.Contains(20))
+
+	intersect := s1.Intersect(s2)
+	fmt.Println("intersect.Contains(10):", intersect.Contains(10))
+	fmt.Println("intersect.Contains(20):", intersect.Contains(20))
+
+	except := s1.Except(s2)
+	fmt.Println("except.Contains(10):", except.Contains(10))
+	fmt.Println("except.Contains(20):", except.Contains(20))
+}
+
+// Output:
+// union.Contains(10): true
+// union.Contains(20): true
+// intersect.Contains(10): true
+// intersect.Contains(20): false
+// except.Contains(10): false
+// except.Contains(20): true
 ```
