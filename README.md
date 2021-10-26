@@ -89,3 +89,31 @@ func main() {
 // except.Contains(10): false
 // except.Contains(20): true
 ```
+
+### Enumerators
+
+```
+package main
+
+import (
+	"fmt"
+	"github.com/paralleltree/go-collections/enumerators"
+)
+
+func main() {
+	e := enumerators.NewRangeEnumerator(enumerators.RangeWithStart(0), enumerators.RangeWithEnd(10))
+	e = enumerators.NewWhereEnumerator(e, func(v int) bool { return v%2 == 0 })
+	e = enumerators.NewSelectEnumerator(e, func(v int) int { return v * v })
+
+	for e.MoveNext() {
+		fmt.Println(e.Current())
+	}
+}
+
+// Output:
+// 0
+// 4
+// 16
+// 36
+// 64
+```
